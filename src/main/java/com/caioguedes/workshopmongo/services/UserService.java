@@ -1,6 +1,7 @@
 package com.caioguedes.workshopmongo.services;
 
 import com.caioguedes.workshopmongo.domain.User;
+import com.caioguedes.workshopmongo.dto.UserDto;
 import com.caioguedes.workshopmongo.exception.ObjectNotFoundException;
 import com.caioguedes.workshopmongo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,14 @@ public class UserService {
       throw new ObjectNotFoundException("User was not found.");
     }
     return user.get();
+  }
+
+  public User insert(User user) {
+    return repository.save(user);
+  }
+
+  public User insert(UserDto userDto) {
+    User user = new User(null, userDto.getName(), userDto.getEmail());
+    return repository.save(user);
   }
 }
