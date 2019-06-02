@@ -1,11 +1,13 @@
 package com.caioguedes.workshopmongo.services;
 
 import com.caioguedes.workshopmongo.domain.User;
+import com.caioguedes.workshopmongo.exception.ObjectNotFoundException;
 import com.caioguedes.workshopmongo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -18,5 +20,13 @@ public class UserService {
 
   public List<User> findAll() {
     return repository.findAll();
+  }
+
+  public User findById(String id) {
+    Optional<User> user = repository.findById(id);
+    if (!user.isPresent()) {
+      throw new ObjectNotFoundException("User was not found.");
+    }
+    return user.get();
   }
 }
