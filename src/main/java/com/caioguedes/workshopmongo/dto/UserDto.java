@@ -9,8 +9,6 @@ public class UserDto implements Serializable {
     private String name;
     private String email;
 
-    public UserDto() {}
-
     public UserDto(User user) {
         this.id = user.getId();
         this.name = user.getName();

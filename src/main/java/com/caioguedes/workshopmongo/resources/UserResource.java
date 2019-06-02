@@ -1,10 +1,7 @@
 package com.caioguedes.workshopmongo.resources;
 
-import com.caioguedes.workshopmongo.domain.User;
 import com.caioguedes.workshopmongo.dto.UserDto;
-import com.caioguedes.workshopmongo.resources.exception.StandardError;
 import com.caioguedes.workshopmongo.services.UserService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
