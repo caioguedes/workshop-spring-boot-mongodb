@@ -44,4 +44,19 @@ public class UserService {
     findById(id);
     repository.deleteById(id);
   }
+
+  public User update(UserDto userUpdate) {
+    Optional<User> userOptional = repository.findById(userUpdate.getId());
+    if (!userOptional.isPresent()) {
+      throw new ObjectNotFoundException("User was not found.");
+    }
+    User user = userOptional.get();
+    updateData(user, userUpdate);
+    return repository.save(user);
+  }
+
+  private void updateData(User updated, UserDto update) {
+    updated.setName(update.getName());
+    updated.setEmail(updated.getEmail());
+  }
 }
