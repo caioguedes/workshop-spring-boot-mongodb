@@ -3,6 +3,7 @@ package com.caioguedes.workshopmongo.services;
 import com.caioguedes.workshopmongo.domain.Post;
 import com.caioguedes.workshopmongo.exception.ObjectNotFoundException;
 import com.caioguedes.workshopmongo.repository.PostRepository;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,5 +23,9 @@ public class PostService {
       throw new ObjectNotFoundException("Post was not found.");
     }
     return post.get();
+  }
+
+  public List<Post> findByTitle(String text) {
+    return repository.findByTitleContainingIgnoreCase(text);
   }
 }
