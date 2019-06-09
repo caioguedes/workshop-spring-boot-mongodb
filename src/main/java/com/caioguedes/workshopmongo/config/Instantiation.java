@@ -3,6 +3,7 @@ package com.caioguedes.workshopmongo.config;
 import com.caioguedes.workshopmongo.domain.Post;
 import com.caioguedes.workshopmongo.domain.User;
 import com.caioguedes.workshopmongo.dto.AuthorDto;
+import com.caioguedes.workshopmongo.dto.CommentDto;
 import com.caioguedes.workshopmongo.repository.PostRepository;
 import com.caioguedes.workshopmongo.repository.UserRepository;
 import java.util.Date;
@@ -46,6 +47,13 @@ public class Instantiation implements CommandLineRunner {
             "Bom dia",
             "Acordei feliz hoje!",
             new AuthorDto(maria));
+
+        CommentDto comment1 = new CommentDto("Boa viagem mano!", new Date(), new AuthorDto(alex));
+        CommentDto comment2 = new CommentDto("Aproveite", new Date(), new AuthorDto(bob));
+        CommentDto comment3 = new CommentDto("Tenha um ótimo dia!", new Date(), new AuthorDto(alex));
+
+        post1.getComments().addAll(Arrays.asList(comment1, comment2));
+        post2.getComments().add(comment3);
 
         postRepository.saveAll(Arrays.asList(post1, post2));
         maria.getPosts().addAll(Arrays.asList(post1, post2));
