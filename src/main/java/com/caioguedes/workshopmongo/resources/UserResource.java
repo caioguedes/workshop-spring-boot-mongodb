@@ -1,5 +1,6 @@
 package com.caioguedes.workshopmongo.resources;
 
+import com.caioguedes.workshopmongo.domain.Post;
 import com.caioguedes.workshopmongo.domain.User;
 import com.caioguedes.workshopmongo.dto.UserDto;
 import com.caioguedes.workshopmongo.services.UserService;
@@ -63,5 +64,10 @@ public class UserResource {
     userDto.setId(id);
     service.update(userDto);
     return ResponseEntity.noContent().build();
+  }
+
+  @GetMapping("/{id}/posts")
+  public ResponseEntity<List<Post>>findPosts(@PathVariable String id) {
+    return ResponseEntity.ok().body(service.findById(id).getPosts());
   }
 }
