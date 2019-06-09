@@ -2,6 +2,7 @@ package com.caioguedes.workshopmongo.config;
 
 import com.caioguedes.workshopmongo.domain.Post;
 import com.caioguedes.workshopmongo.domain.User;
+import com.caioguedes.workshopmongo.dto.AuthorDto;
 import com.caioguedes.workshopmongo.repository.PostRepository;
 import com.caioguedes.workshopmongo.repository.UserRepository;
 import java.util.Date;
@@ -31,20 +32,21 @@ public class Instantiation implements CommandLineRunner {
         User alex = new User(null, "Alex Green", "alex@example.com");
         User bob = new User(null, "Bob Grey", "bob@example.com");
 
+        userRepository.saveAll(Arrays.asList(maria, alex, bob));
+
         Post post1 = new Post(
             null,
             new Date(),
             "Partiu viagem",
             "Vou viajar para São Paulo. Abraços!",
-            maria);
+            new AuthorDto(maria));
         Post post2 = new Post(
             null,
             new Date(),
             "Bom dia",
             "Acordei feliz hoje!",
-            maria);
+            new AuthorDto(maria));
 
-        userRepository.saveAll(Arrays.asList(maria, alex, bob));
         postRepository.saveAll(Arrays.asList(post1, post2));
     }
 }
