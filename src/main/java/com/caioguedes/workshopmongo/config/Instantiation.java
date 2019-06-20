@@ -12,7 +12,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.Arrays;
+import org.springframework.context.annotation.Profile;
 
+@Profile("demo")
 @Configuration
 public class Instantiation implements CommandLineRunner {
     private UserRepository userRepository;
